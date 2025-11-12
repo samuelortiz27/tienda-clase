@@ -1,0 +1,14 @@
+{% extends 'tienda/base.html' %}
+
+{% block title %}{{ cliente.nombre }}{% endblock %}
+
+{% block content %}
+  <h1>Detalle del Cliente</h1>
+  <p><strong>Nombre:</strong> {{ cliente.nombre }}</p>
+  <p><strong>Email:</strong> {{ cliente.correo }}</p>
+  <p><strong>Fecha de registro:</strong> {{ cliente.fecha_registro }}</p>
+  <p>
+    <a href="{% url 'tienda:editar_cliente' cliente.pk %}" class="btn">✏️ Editar cliente</a>
+  </p>
+  <p><a href="{%  url 'tienda:lista_clientes' %}">Volver a la lista de clientes</a></p>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "tienda/base.html" %}
+{% block title %}Editar pedido #{{ pedido.pk }} {% endblock %}
+
+{% block content %}
+<h1>Editar pedido #{{ pedido.pk }}</h1>
+<form method="POST">
+    {% csrf_token %}
+    <fieldset>
+        <legend>Datos del pedido</legend>
+        {{ pedido_form.as_p }}
+    </fieldset>
+    <fieldset>
+        <legend>Productos</legend>
+        {{ formset.management_form }}
+        {% for form in formset %}
+            <div class="fila-editar">
+                {{ form.as_p }}
+            </div>
+        {% endfor %}
+    </fieldset>
+    <button class="btn" type="submit">Actualizar</button>
+    <a class="btn" href="{% url 'tienda:detalle_pedido' pedido.pk %}">Volver</a>
+</form>
+{% endblock %}
